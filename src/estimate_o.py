@@ -73,21 +73,20 @@ def main(exe_args):
                 coo_matrix.get_value(random_coords)
         y_reading.append(atimer.delta * 1000000)
     
-    print('-' * 64)
+    print('+' + '-' * 20 + '+' + '-' * 20 + '+' + '-' * 20 + '+')
     print('|{0:^20s}|{1:^20}|{2:^20s}|'\
         .format('Size', 'Writing (mks)', 'Reading (mks)')) 
-    print('-' * 64)
+    print('+' + '-' * 20 + '+' + '-' * 20 + '+' + '-' * 20 + '+')
     for _idx in range(exe_args.total):
         print(
-            '|{0:^20d}|{1:>20.7f}|{2:>20.7f}|'\
+            '|{0:<20d}|{1:>20.7f}|{2:>20.7f}|'\
                 .format(
                     x_dimensions[_idx], 
                     y_writing[_idx],
                     y_reading[_idx]    
                 )
         )
-
-    print('-' * 64)
+    print('+' + '-' * 20 + '+' + '-' * 20 + '+' + '-' * 20 + '+')
 
     if exe_args.plot:
         plt.title('Complexity estimation')
