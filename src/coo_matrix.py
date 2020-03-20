@@ -14,23 +14,18 @@ class DimensionError(Exception):
 class CooMatrix:
     """Sparse matrix class."""
 
-    def __init__(self, shape, dtype=int):
-
-        assert(isinstance(shape, (tuple, list)))
-
-        # Dimensions
-        self._shape = shape
-
-        # Nonzero cells dictionary
+    def __init__(self, shape):
+        self.shape = tuple(shape)
         self._nonzero = dict()
 
     @property
     def dimensions(self):
         """The size of matrix shape."""
-        return len(self._shape)
+        return len(self.shape)
 
-    def check_coords(self, coords):
+    def check_coords(self, coords: tuple):
         """Check if cell coords are valid."""
+
         if len(coords) != self.dimensions:
             raise DimensionError(
                 'The cell coordinates length are invalid: '
@@ -39,7 +34,7 @@ class CooMatrix:
 
         for _idx, _coord in enumerate(coords):
             if not isinstance(_coord, int) or _coord < 0 or \
-                    _coord > self._shape[_idx]:
+                    _coord > self.shape[_idx]:
                 raise DimensionError(
                     'The cell {0:d}-th coordinate is invalid: <{1}>'\
                         .format(_idx, _coord)
@@ -63,3 +58,5 @@ class CooMatrix:
         for coords, value in self._nonzero.items():
             yield (', '.join(coords), value)
 
+    def get_value(self, coords):
+        return self._nonzero.get(coords, 0)
