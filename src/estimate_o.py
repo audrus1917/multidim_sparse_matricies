@@ -86,7 +86,7 @@ def main(exe_args):
                     y_reading[_idx]    
                 )
         )
-    print('+' + '-' * 20 + '+' + '-' * 20 + '+' + '-' * 20 + '+')
+        print('+' + '-' * 20 + '+' + '-' * 20 + '+' + '-' * 20 + '+')
 
     if exe_args.plot:
         plt.title('Complexity estimation')
